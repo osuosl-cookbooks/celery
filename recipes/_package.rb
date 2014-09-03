@@ -22,4 +22,3 @@ include_recipe "python::default"
 include_recipe "python::pip"
 
 python_pip "celery"
-python_pip "uwsgi"
