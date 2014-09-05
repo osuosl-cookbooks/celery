@@ -17,8 +17,19 @@
 # limitations under the License.
 #
 
-include_recipe "build-essential"
-include_recipe "python::default"
-include_recipe "python::pip"
+case node['celery']['celery-install-method']
+when 'source'
+  node.override['python']['install_method'] = 'source'
+  include_recipe "python::default"
+  include_recipe "python::pip"
+when 'package'
+  include_recipe 'yum-ius'
+  %w[ python27 python27-pip python27-virtualenv ].each { |p| package p }
+  node.override['python']['binary'] = '/usr/bin/python2.7'
+  node.override['python']['pip_location'] = '/usr/bin/pip2.7'
+  node.override['python']['virtualenv_location'] = '/usr/bin/virtualenv-2.7'
+else
+  Chef::Log.warn "node['celery']['celery-install-method'] is set to #{node['celery']['celery-install-method']} which is unrecognized. Installing celery may fail..."
+end
 
 python_pip "celery"

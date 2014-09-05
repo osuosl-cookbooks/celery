@@ -14,3 +14,5 @@ default['celery']['group'] = 'celery'
 default['celery']['create-dirs'] = 1
 
 default['celery']['install-package'] = true
+default['celery']['celery-install-method'] = 'package'
+
