@@ -11,6 +11,8 @@ default['celery']['user'] = 'celery'
 default['celery']['make-group'] = true
 default['celery']['group'] = 'celery'
 
+default['celery']['create-log-dir'] = 0
+default['celery']['create-run-dir'] = 0
 default['celery']['create-dirs'] = 1
 
 default['celery']['install-package'] = true
