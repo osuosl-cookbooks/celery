@@ -38,3 +38,7 @@ CELERY_CREATE_DIRS=<%= node['celery']['create-dirs'] %>
 CELERY_CREATE_RUNDIR=<%= node['celery']['create-run-dir'] %>
 CELERY_CREATE_LOGDIR=<%= node['celery']['create-log-dir'] %>
 <% end -%>
+
+<% node['celery']['extra-config-options'].each_pair do |name, value| -%>
+<%= name.upcase %>=<%= value %>
+<% end -%>
