@@ -9,4 +9,4 @@ version          '0.1.0'
 supports         'centos', '~> 6.0'
 
 depends          'python'
-depends          'uwsgi'
+depends          'yum-ius'
