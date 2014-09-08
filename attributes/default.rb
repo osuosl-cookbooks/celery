@@ -1,5 +1,5 @@
 default['celery']['nodes'] = ['node1']
-default['celery']['bin-path'] = '/usr/local/bin/celery'
+default['celery']['bin-path'] = '/usr/bin/celery'
 default['celery']['app'] = 'tasks'
 default['celery']['chdir'] = ''
 default['celery']['opts'] = "--time-limit=300"

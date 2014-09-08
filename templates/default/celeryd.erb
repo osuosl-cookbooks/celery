@@ -32,7 +32,7 @@ CELERYD_GROUP="<%= node['celery']['group'] %>"
 
 # If enabled pid and log directories will be created if missing,
 # and owned by the userid/group configured.
-<% unless node['celery']['create-dirs' == 0 or node['celery']['create-dirs'].nil? -%>
+<% unless node['celery']['create-dirs'] == 0 or node['celery']['create-dirs'].nil? -%>
 CELERY_CREATE_DIRS=<%= node['celery']['create-dirs'] %>
 <% else -%>
 CELERY_CREATE_RUNDIR=<%= node['celery']['create-run-dir'] %>

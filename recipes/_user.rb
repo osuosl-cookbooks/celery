@@ -17,7 +17,4 @@
 # limitations under the License.
 #
 
-user node['celery']['user'] do
-  system true
-  shell '/bin/false'
-end
+user node['celery']['user']
