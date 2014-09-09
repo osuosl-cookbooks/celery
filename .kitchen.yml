@@ -1,0 +1,32 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  - name: centos-6.5
+
+suites:
+  - name: source
+    run_list:
+      - recipe[celery::default]
+    attributes:
+        python:
+            prefix_dir: /usr/local
+            configure_options:
+                - "--prefix=/usr/local/"
+        celery:
+            celery-install-method: source
+            chdir: /tmp
+            bin-path: /usr/local/bin/celery
+            app: ""
+  - name: package
+    run_list:
+      - recipe[celery::default]
+    attributes:
+        celery:
+            celery-install-method: package
+            chdir: /tmp
+            app: ""
