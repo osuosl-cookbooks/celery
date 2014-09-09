@@ -27,6 +27,8 @@ suites:
     attributes:
         python:
             prefix_dir: /usr/local
+            configure_options:
+                - "--prefix=/usr/local/"
         celery:
             celery-install-method: source
             chdir: /tmp
