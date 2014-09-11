@@ -16,18 +16,3 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
-include_recipe 'celery::_user' if node['celery']['make-user']
-include_recipe 'celery::_group' if node['celery']['make-group']
-include_recipe 'celery::_package' if node['celery']['install-package']
-
-cookbook_file '/etc/init.d/celeryd' do
-  mode 0755
-end
-
-template '/etc/default/celeryd'
-
-service 'celeryd' do
-  action [:enable, :start]
-  subscribes :restart, 'template[/etc/default/celeryd]'
-end
