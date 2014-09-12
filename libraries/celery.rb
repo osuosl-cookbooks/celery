@@ -30,6 +30,8 @@ class Chef
     def action_create()
       converge_by("Creating resource #{new_resource.name}") do
         notifying_block do
+          include_recipe "python"
+
           cookbook_file "/etc/init.d/celeryd" do
             mode "755"
           end
@@ -61,6 +63,8 @@ class Chef
               extraopts: new_resource.extraopts
             )
           end
+
+          python_pip "celery"
 
           service "celeryd" do
             action [:enable, :start]
