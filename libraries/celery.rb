@@ -30,9 +30,9 @@ class Chef
     def action_create()
       converge_by("Creating resource #{new_resource.name}") do
         notifying_block do
-          cookbook_file "/etc/init.d/#{new_resource.name}"
+          cookbook_file "/etc/init.d/celeryd"
 
-          template "/etc/default/#{new_resource.name}" do
+          template "/etc/default/celery" do
             variables ({
               app: new_resource.app,
               bin: new_resource.bin,
