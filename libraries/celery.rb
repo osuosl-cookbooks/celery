@@ -33,7 +33,8 @@ class Chef
           include_recipe "python"
           include_recipe "python::pip"
 
-          cookbook_file "/etc/init.d/celeryd" do
+          cookbook_file "/etc/init.d/celery_#{new_resource.name}" do
+            source "celeryd"
             mode "755"
           end
 
@@ -47,7 +48,8 @@ class Chef
               end
           end
 
-          template "/etc/default/celery" do
+          template "/etc/default/celery_#{new_resource.name}" do
+            source "celery.erb"
             variables (
               app: new_resource.app,
               bin: new_resource.bin,
@@ -78,7 +80,7 @@ class Chef
             Chef::Log.warn "node['celery']['installmethod'] is set to #{node['celery']['installmethod']} which is unrecognized. Installing celery may fail..."
           end
 
-          service "celeryd" do
+          service "celery_#{new_resource.name}" do
             action [:enable, :start]
           end
         end
