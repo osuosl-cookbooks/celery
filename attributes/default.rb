@@ -1,21 +1,18 @@
-default['celery']['nodes'] = ['node1']
-default['celery']['bin-path'] = '/usr/bin/celery'
 default['celery']['app'] = 'tasks'
+default['celery']['bin'] = '/usr/bin/celery'
 default['celery']['chdir'] = ''
+default['celery']['nodes'] = ['node1']
 default['celery']['opts'] = "--time-limit=300"
-default['celery']['log-file'] = '/var/log/celery/%N.log'
-default['celery']['pid-file'] = '/var/run/celer/%N.pid'
+default['celery']['logfile'] = '/var/log/celery/%N.log'
+default['celery']['pidfile'] = '/var/run/celer/%N.pid'
 
-default['celery']['make-user'] = true
+default['celery']['makeuser'] = true
 default['celery']['user'] = 'celery'
-default['celery']['make-group'] = true
+default['celery']['makegroup'] = true
 default['celery']['group'] = 'celery'
 
-default['celery']['create-log-dir'] = 0
-default['celery']['create-run-dir'] = 0
-default['celery']['create-dirs'] = 1
+default['celery']['createlogdir'] = 0
+default['celery']['createpiddir'] = 0
+default['celery']['createdirs'] = 1
 
-default['celery']['install-package'] = true
-default['celery']['celery-install-method'] = 'package'
-
-default['celery']['extra-config-options'] = {}
+default['celery']['extraopts'] = {}
