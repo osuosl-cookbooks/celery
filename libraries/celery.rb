@@ -31,6 +31,7 @@ class Chef
       converge_by("Creating resource #{new_resource.name}") do
         notifying_block do
           include_recipe "python"
+          include_recipe "python::pip"
 
           cookbook_file "/etc/init.d/celeryd" do
             mode "755"
@@ -64,7 +65,18 @@ class Chef
             })
           end
 
-          python_pip "celery"
+          case new_resource.installmethod
+          when "pip"
+            include_recipe "python"
+
+            python_pip "distribute" do
+              action :upgrade
+            end
+
+            python_pip "celery"
+          else
+            Chef::Log.warn "node['celery']['installmethod'] is set to #{node['celery']['installmethod']} which is unrecognized. Installing celery may fail..."
+          end
 
           service "celeryd" do
             action [:enable, :start]
