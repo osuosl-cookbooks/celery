@@ -34,6 +34,16 @@ class Chef
             mode "755"
           end
 
+          if new_resource.makeuser
+            user new_resource.user
+          end
+
+          if new_resource.makegroup
+              group new_resource.group do
+                members [new_resource.user]
+              end
+          end
+
           template "/etc/default/celery" do
             variables (
               app: new_resource.app,
