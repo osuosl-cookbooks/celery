@@ -11,5 +11,5 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[celery::default]
+      - recipe[celery::_test]
     attributes:
