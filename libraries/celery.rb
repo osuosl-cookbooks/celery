@@ -4,24 +4,24 @@ class Chef
 
     actions(:create)
 
-    attribute(:app, kind_of: String)
-    attribute(:bin, kind_of: String)
-    attribute(:chdir, kind_of: String)
-    attribute(:nodes, kind_of: String)
-    attribute(:opts, kind_of: String)
-    attribute(:logfile, kind_of: String)
-    attribute(:pidfile, kind_of: String)
+    attribute(:app, kind_of: String, default: "")
+    attribute(:bin, kind_of: String, default: "/usr/bin/celery")
+    attribute(:chdir, kind_of: String, default: "/tmp")
+    attribute(:nodes, kind_of: Array, default: ["node1"])
+    attribute(:opts, kind_of: String, default: "--time-limit=300")
+    attribute(:logfile, kind_of: String, default: "/var/log/celery/%N.log")
+    attribute(:pidfile, kind_of: String, default: "/var/run/celery/%N.pid")
 
-    attribute(:makeuser, kind_of: [TrueClass,FalseClass])
-    attribute(:user, kind_of: String)
-    attribute(:makegroup, kind_of: [TrueClass,FalseClass])
-    attribute(:group, kind_of: String)
+    attribute(:makeuser, kind_of: [TrueClass,FalseClass], default: true)
+    attribute(:user, kind_of: String, default: "celery")
+    attribute(:makegroup, kind_of: [TrueClass,FalseClass], default: true)
+    attribute(:group, kind_of: String, default: "celery")
 
-    attribute(:createlogdir, kind_of: [TrueClass,FalseClass])
-    attribute(:createpiddir, kind_of: [TrueClass,FalseClass])
-    attribute(:createdirs, kind_of: [TrueClass,FalseClass,NilClass])
+    attribute(:createlogdir, kind_of: [TrueClass,FalseClass], default: false)
+    attribute(:createpiddir, kind_of: [TrueClass,FalseClass], default: false)
+    attribute(:createdirs, kind_of: [TrueClass,FalseClass,NilClass], default: true)
 
-    attribute(:extraops, kind_of: Array)
+    attribute(:extraopts, kind_of: Hash, default: {})
   end
 
   class Provider::Celery < Provider
@@ -53,13 +53,12 @@ class Chef
               opts: new_resource.opts,
               logfile: new_resource.logfile,
               pidfile: new_resource.pidfile,
-              makeuser: new_resource.makeuser,
               user: new_resource.user,
-              makegroup: new_resource.makegroup,
               group: new_resource.group,
               createlogdir: new_resource.createlogdir,
               createpiddir: new_resource.createpiddir,
-              createdirs: new_resource.createdirs
+              createdirs: new_resource.createdirs,
+              extraopts: new_resource.extraopts
             })
           end
 
