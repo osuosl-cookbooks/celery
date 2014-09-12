@@ -22,6 +22,8 @@ class Chef
     attribute(:createdirs, kind_of: [TrueClass,FalseClass,NilClass], default: true)
 
     attribute(:extraopts, kind_of: Hash, default: {})
+
+    attribute(:installmethod, kind_of: String, default: "pip")
   end
 
   class Provider::Celery < Provider
@@ -30,8 +32,6 @@ class Chef
     def action_create()
       converge_by("Creating resource #{new_resource.name}") do
         notifying_block do
-          include_recipe "python"
-          include_recipe "python::pip"
 
           cookbook_file "/etc/init.d/celery_#{new_resource.name}" do
             source "celeryd"
