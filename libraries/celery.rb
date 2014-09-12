@@ -30,7 +30,9 @@ class Chef
     def action_create()
       converge_by("Creating resource #{new_resource.name}") do
         notifying_block do
-          cookbook_file "/etc/init.d/celeryd"
+          cookbook_file "/etc/init.d/celeryd" do
+            mode "755"
+          end
 
           template "/etc/default/celery" do
             variables ({
@@ -49,6 +51,10 @@ class Chef
               createpiddir: new_resource.createpiddir,
               createdirs: new_resource.createdirs
             })
+          end
+
+          service "celeryd" do
+            action [:enable, :start]
           end
         end
       end
