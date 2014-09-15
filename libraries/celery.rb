@@ -23,7 +23,7 @@ class Chef
 
     attribute(:extraopts, kind_of: Hash, default: {})
 
-    attribute(:installmethod, kind_of: String, default: "pip")
+    attribute(:installmethod, kind_of: String, default: "source")
   end
 
   class Provider::Celery < Provider
@@ -68,17 +68,21 @@ class Chef
           end
 
           case new_resource.installmethod
-          when "pip"
+          when "source"
             include_recipe "python"
 
             python_pip "distribute" do
               action :upgrade
             end
 
-            python_pip "celery"
+          when "package"
+            include_recipe 'yum-ius'
+            %w[ python27 python27-pip python27-virtualenv].each { |p| package p }
           else
             Chef::Log.warn "node['celery']['installmethod'] is set to #{node['celery']['installmethod']} which is unrecognized. Installing celery may fail..."
           end
+
+          python_pip "celery"
 
           service "celery_#{new_resource.name}" do
             action [:enable, :start]
