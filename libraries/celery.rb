@@ -78,6 +78,8 @@ class Chef
           when "package"
             include_recipe 'yum-ius'
             %w[ python27 python27-pip python27-virtualenv].each { |p| package p }
+            node.override['python']['binary'] = '/usr/bin/python2.7'
+            node.override['python']['pip_location'] = '/usr/bin/pip2.7'
           else
             Chef::Log.warn "node['celery']['installmethod'] is set to #{node['celery']['installmethod']} which is unrecognized. Installing celery may fail..."
           end
