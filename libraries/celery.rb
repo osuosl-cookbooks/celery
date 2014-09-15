@@ -17,9 +17,9 @@ class Chef
     attribute(:makegroup, kind_of: [TrueClass,FalseClass], default: true)
     attribute(:group, kind_of: String, default: "celery")
 
-    attribute(:createlogdir, kind_of: [TrueClass,FalseClass], default: false)
-    attribute(:createpiddir, kind_of: [TrueClass,FalseClass], default: false)
-    attribute(:createdirs, kind_of: [TrueClass,FalseClass,NilClass], default: true)
+    attribute(:createlogdir, kind_of: [TrueClass,FalseClass], default: 1)
+    attribute(:createpiddir, kind_of: [TrueClass,FalseClass], default: 1)
+    attribute(:createdirs, kind_of: [TrueClass,FalseClass,NilClass], default: 1)
 
     attribute(:extraopts, kind_of: Hash, default: {})
 
