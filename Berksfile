@@ -1,6 +1,7 @@
 source "https://supermarket.getchef.com"
 
-cookbook 'python'
-cookbook 'yum-ius'
+cookbook "poise"
+cookbook "python"
+cookbook "yum-ius"
 
 metadata
