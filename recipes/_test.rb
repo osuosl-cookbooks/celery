@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: celery
-# Recipe:: _group
+# Recipe:: default
 #
 # Copyright (C) 2014 Oregon State University
 #
@@ -15,8 +15,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
 
-group node['celery']['group'] do
-  members [node['celery']['user']]
-end
+
+celery "myapp"
