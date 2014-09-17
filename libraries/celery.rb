@@ -51,6 +51,7 @@ class Chef
 
           template "/etc/default/celery_#{new_resource.name}" do
             source "celery.erb"
+            cookbook "celery"
             variables ({
               app: new_resource.app,
               bin: new_resource.bin,
