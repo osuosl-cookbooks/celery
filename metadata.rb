@@ -8,6 +8,5 @@ version          '0.1.0'
 
 supports         'centos', '~> 6.0'
 
-depends          'poise'
 depends          'python'
 depends          'yum-ius'
