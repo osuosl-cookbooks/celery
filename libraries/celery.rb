@@ -34,6 +34,7 @@ class Chef
         notifying_block do
 
           cookbook_file "/etc/init.d/celery_#{new_resource.name}" do
+            cookbook "celery"
             source "celeryd"
             mode "755"
           end
