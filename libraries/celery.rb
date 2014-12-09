@@ -1,3 +1,5 @@
+require 'pry'
+
 class Chef
   class Resource::Celery < Resource
     include Poise
@@ -33,6 +35,7 @@ class Chef
       converge_by("Creating resource #{new_resource.name}") do
         notifying_block do
 
+          binding.pry
           cookbook_file "/etc/init.d/celery_#{new_resource.name}" do
             cookbook "celery"
             source "celeryd"
