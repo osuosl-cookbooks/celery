@@ -29,7 +29,7 @@ class Chef
   class Provider::Celery < Provider
     include Poise
 
-    def action_create()
+    def action_create
       converge_by("Creating resource #{new_resource.name}") do
         notifying_block do
 
