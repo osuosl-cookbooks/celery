@@ -4,7 +4,7 @@ maintainer_email 'chef@osuosl.org'
 license          'Apache 2.0'
 description      'Installs/Configures celery'
 long_description 'Installs/Configures celery'
-version          '0.1.1'
+version          '0.1.2'
 
 supports         'centos', '~> 6.0'
 
