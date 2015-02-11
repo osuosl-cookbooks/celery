@@ -1,6 +1,6 @@
 source "https://supermarket.getchef.com"
 
-cookbook "poise", git: "https://github.com/poise/poise", branch: 'master'
+cookbook "poise", "~> 1.0.12"
 cookbook "python"
 cookbook "yum-ius"
 
