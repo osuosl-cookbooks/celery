@@ -11,3 +11,5 @@ supports         'centos', '~> 6.0'
 depends          'poise'
 depends          'python'
 depends          'yum-ius'
+
+supports         'centos', '~> 6'
