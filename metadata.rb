@@ -12,4 +12,4 @@ depends          'poise'
 depends          'python'
 depends          'yum-ius'
 
-supports         'centos', '~> 6'
+supports         'centos', '~> 6.0'
